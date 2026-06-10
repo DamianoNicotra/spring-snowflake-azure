@@ -1,6 +1,6 @@
 # spring-snowflake-azure
 
-**Spring Boot API su Azure che scrive log su Snowflake. Infrastruttura as Code con Terraform.**
+**Spring Boot API on Azure that logs requests to Snowflake. Infrastructure as Code with Terraform.**
 
 [![Java](https://img.shields.io/badge/Java-17-blue.svg)](https://adoptium.net/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
@@ -9,49 +9,49 @@
 [![Terraform](https://img.shields.io/badge/Terraform-IaC-623CE4.svg)](https://www.terraform.io/)
 [![Docker](https://img.shields.io/badge/Docker-Container-2496ED.svg)](https://www.docker.com/)
 
-## 🚀 Panoramica
+## 🚀 Overview
 
-Questo progetto dimostra come costruire un'**API REST completa** su Azure, con logging automatico su **Snowflake** e infrastruttura interamente gestita con **Terraform**.
+This project demonstrates how to build a **complete REST API** on Azure, with automatic logging to **Snowflake** and infrastructure fully managed with **Terraform**.
 
-L'API espone tre endpoint:
-- `GET /bits/{n}` – Calcola le posizioni dei bit a 1 nella rappresentazione binaria
-- `POST /roman` – Converte un numero in numeri romani
-- `GET /health` – Health check per il servizio
+The API exposes three endpoints:
+- `GET /bits/{n}` – Finds positions of 1-bits in binary representation
+- `POST /roman` – Converts a number to Roman numerals
+- `GET /health` – Health check for the service
 
-**Ogni richiesta viene automaticamente salvata su Snowflake** con:
-- Endpoint chiamato
-- Dati della richiesta (JSON)
-- Risposta restituita (JSON)
-- Timestamp e status code
+**Every request is automatically saved to Snowflake** with:
+- Called endpoint
+- Request data (JSON)
+- Response data (JSON)
+- Timestamp and status code
 
 ## 🛠️ Tech Stack
 
-| Layer | Tecnologia |
+| Layer | Technology |
 |-------|------------|
-| Linguaggio | Java 17 |
+| Language | Java 17 |
 | Framework | Spring Boot 3.2 |
 | Cloud Provider | Microsoft Azure |
 | Database | Snowflake (Data Warehouse) |
 | IaC | Terraform |
 | Container | Docker |
 | Build Tool | Maven |
-| Controllo versioni | Git + GitHub |
+| Version Control | Git + GitHub |
 
-## 📦 Endpoints API
+## 📦 API Endpoints
 
-| Metodo | Endpoint | Descrizione | Esempio |
+| Method | Endpoint | Description | Example |
 |--------|----------|-------------|---------|
-| GET | `/bits/{n}` | Posizioni dei bit a 1 | `/bits/42` → `{"bitPositions":"1,3,5"}` |
-| POST | `/roman` | Conversione in numeri romani | `{"number":2024}` → `{"roman":"MMXXIV"}` |
+| GET | `/bits/{n}` | Find 1-bit positions | `/bits/42` → `{"bitPositions":"1,3,5"}` |
+| POST | `/roman` | Convert to Roman numerals | `{"number":2024}` → `{"roman":"MMXXIV"}` |
 | GET | `/health` | Health check | `{"status":"healthy"}` |
 
-### Esempio di chiamata
+### Example calls
 
 ```bash
-# Calcolo bit positions
+# Calculate bit positions
 curl http://localhost:8080/bits/42
 
-# Conversione in numeri romani
+# Convert to Roman numerals
 curl -X POST http://localhost:8080/roman \
   -H "Content-Type: application/json" \
   -d '{"number": 2024}'
